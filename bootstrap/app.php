@@ -23,9 +23,9 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
-// $app->withFacades();
+$app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -52,11 +52,6 @@ $app->singleton(
 
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
-
-// Helper que conecta ao eloquent 
-
-$app->withEloquent();
-
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -71,6 +66,10 @@ $app->withEloquent();
 // $app->middleware([
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
+
+$app->routeMiddleware([
+   'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
+]);
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
